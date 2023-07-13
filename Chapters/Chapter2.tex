@@ -5,198 +5,68 @@
 %----------------------------------------------------------------------------------------
 %	SECTION 1
 %----------------------------------------------------------------------------------------
-Todos los capítulos deben comenzar con un breve párrafo introductorio que indique cuál es el contenido que se encontrará al leerlo.  La redacción sobre el contenido de la memoria debe hacerse en presente y todo lo referido al proyecto en pasado, siempre de modo impersonal.
 
-\section{Estilo y convenciones}
-\label{sec:ejemplo}
+En este capítulo se describen los escenarios posibles de aplicación, el módulo de hardware que se utilizó y extienden algunos conceptos mencionados previamente que serán útiles para comprender el trabajo realizado.
 
-\subsection{Uso de mayúscula inicial para los título de secciones}
+\section{Escenarios de posible aplicación}
 
-Si en el texto se hace alusión a diferentes partes del trabajo referirse a ellas como capítulo, sección o subsección según corresponda. Por ejemplo: ``En el capítulo \ref{Chapter1} se explica tal cosa'', o ``En la sección \ref{sec:ejemplo} se presenta lo que sea'', o ``En la subsección \ref{subsec:ejemplo} se discute otra cosa''.
+Como fue mencionado en el capítulo anterior, este proyecto surge de la intención de extender los casos de uso para el “HRD-Radio-LoRa”. Los escenarios que se desean contemplar con aquellos donde no es posible por cuestiones técnicas y/o económicas desplegar la cantidad de \emph{gateways}  necesarios para brindar cobertura a toda la zona deseada. De ahí que la solución buscó utilizar una mecanismo basado en \emph{mesh} para así poder utilizar los equipos instalados como ruteadores de los mensajes de sus vecinos y así permitir extender la cobertura de la red.
 
-Cuando se quiere poner una lista tabulada, se hace así:
+Los escenarios en los cuales resulta más beneficiosos este desarrollo son en las industrias de Agro y el \emph{Oil\&Gas}. En ambos casos el acceso a la energía eléctrica y redes de telecomunicaciones no es factible en ciertas zonas, lo que imposibilita la instalación de \emph{gateways}. En el caso particular de la industria de \emph{Oil\&Gas} también la propia geografía de la zona tiene un impacto negativo en las comunicaciones presentando una dificultad adicional. 
 
-\begin{itemize}
-	\item Este es el primer elemento de la lista.
-	\item Este es el segundo elemento de la lista.
-\end{itemize}
 
-Notar el uso de las mayúsculas y el punto al final de cada elemento.
+\section{Componentes de hardware}
 
-Si se desea poner una lista numerada el formato es este:
+El módulo de hardware sobre el cuál se realizó el desarrollo fue el “HRD-Radio-LoRa”.~\ref{fig:Hardware} \citep{WEBSITE:5} Los componentes principales son un transceptor LoRa de marca HOPERF, un microcontrolador de 16 bits de marca Microchip y un \emph{bus} de datos que permite a la placa comunicarse con otros módulos también fabricados por RF Industrial.
 
-\begin{enumerate}
-	\item Este es el primer elemento de la lista.
-	\item Este es el segundo elemento de la lista.
-\end{enumerate}
 
-Notar el uso de las mayúsculas y el punto al final de cada elemento.
-
-\subsection{Este es el título de una subsección}
-\label{subsec:ejemplo}
-
-Se recomienda no utilizar \textbf{texto en negritas} en ningún párrafo, ni tampoco texto \underline{subrayado}. En cambio sí se debe utilizar \textit{texto en itálicas} para palabras en un idioma extranjero, al menos la primera vez que aparecen en el texto. En el caso de palabras que estamos inventando se deben utilizar ``comillas'', así como también para citas textuales. Por ejemplo, un \textit{digital filter} es una especie de ``selector'' que permite separar ciertos componentes armónicos en particular.
-
-La escritura debe ser impersonal. Por ejemplo, no utilizar ``el diseño del firmware lo hice de acuerdo con tal principio'', sino ``el firmware fue diseñado utilizando tal principio''. 
-
-El trabajo es algo que al momento de escribir la memoria se supone que ya está concluido, entonces todo lo que se refiera a hacer el trabajo se narra en tiempo pasado, porque es algo que ya ocurrió. Por ejemplo, "se diseñó el firmware empleando la técnica de test driven development".
-
-En cambio, la memoria es algo que está vivo cada vez que el lector la lee. Por eso transcurre siempre en tiempo presente, como por ejemplo:
-
-``En el presente capítulo se da una visión global sobre las distintas pruebas realizadas y los resultados obtenidos. Se explica el modo en que fueron llevados a cabo los test unitarios y las pruebas del sistema''.
-
-Se recomienda no utilizar una sección de glosario sino colocar la descripción de las abreviaturas como parte del mismo cuerpo del texto. Por ejemplo, RTOS (\textit{Real Time Operating System}, Sistema Operativo de Tiempo Real) o en caso de considerarlo apropiado mediante notas a pie de página.
-
-Si se desea indicar alguna página web utilizar el siguiente formato de referencias bibliográficas, dónde las referencias se detallan en la sección de bibliografía de la memoria, utilizado el formato establecido por IEEE en \citep{IEEE:citation}. Por ejemplo, ``el presente trabajo se basa en la plataforma EDU-CIAA-NXP \citep{CIAA}, la cual...''.
-
-\subsection{Figuras} 
-
-Al insertar figuras en la memoria se deben considerar determinadas pautas. Para empezar, usar siempre tipografía claramente legible. Luego, tener claro que \textbf{es incorrecto} escribir por ejemplo esto: ``El diseño elegido es un cuadrado, como se ve en la siguiente figura:''
-
-\begin{figure}[h]
-\centering
-\includegraphics[scale=.45]{./Figures/cuadradoAzul.png}
+\begin{figure}
+\includegraphics[width=1\textwidth]{./Figures/EMIC-radio-lora.png}
+\caption{Esquema de red.}
+\label{fig:Hardware}
 \end{figure}
 
-La forma correcta de utilizar una figura es con referencias cruzadas, por ejemplo: ``Se eligió utilizar un cuadrado azul para el logo, como puede observarse en la figura \ref{fig:cuadradoAzul}''.
+\section{Protocolo de enrutamiento}
 
-\begin{figure}[ht]
-	\centering
-	\includegraphics[scale=.45]{./Figures/cuadradoAzul.png}
-	\caption{Ilustración del cuadrado azul que se eligió para el diseño del logo.}
-	\label{fig:cuadradoAzul}
-\end{figure}
+Un protocolo de enrutamiento de paquetes es un conjunto de reglas y procedimientos que se utilizan para determinar cómo se transmiten los paquetes de datos a través de una red de dispositivos. Estos protocolos permiten que los paquetes sean enviados de manera eficiente desde el origen al destino a través de una serie de nodos intermedios.
 
-El texto de las figuras debe estar siempre en español, excepto que se decida reproducir una figura original tomada de alguna referencia. En ese caso la referencia de la cual se tomó la figura debe ser indicada en el epígrafe de la figura e incluida como una nota al pie, como se ilustra en la figura \ref{fig:palabraIngles}.
+El enrutamiento de paquetes implica tomar decisiones sobre la mejor ruta para enviar los paquetes en función de la topología y las condiciones actuales de la red. A continuación se mencionan algunos de las principales problemáticas a ser resueltas por un protocolo de enrutamiento.
 
-\begin{figure}[htpb]
-	\centering
-	\includegraphics[scale=.3]{./Figures/word.jpeg}
-	\caption{Imagen tomada de la página oficial del procesador\protect\footnotemark.}
-	\label{fig:palabraIngles}
-\end{figure}
+\subsection{Descubrimiento de la topología}
 
-\footnotetext{Imagen tomada de \url{https://goo.gl/images/i7C70w}}
+El protocolo necesita conocer la estructura y los enlaces de la red para tomar decisiones de enrutamiento. Esto lo logra intercambiando estableciendo los mecanismos necesarios para que los nodos de la red puedan intercambiar información de estado o de enlace.
 
-La figura y el epígrafe deben conformar una unidad cuyo significado principal pueda ser comprendido por el lector sin necesidad de leer el cuerpo central de la memoria. Para eso es necesario que el epígrafe sea todo lo detallado que corresponda y si en la figura se utilizan abreviaturas entonces aclarar su significado en el epígrafe o en la misma figura.
+\subsection{Construcción de la tabla de enrutamiento}
 
+Cada nodo de la red mantiene una tabla de enrutamiento que indica las rutas disponibles hacia diferentes destinos. Esta tabla se crea a partir de la información recopilada durante el descubrimiento de la topología y se actualiza dinámicamente a medida que la red cambia.
 
+\subsection{Selección de la mejor ruta}
 
-\begin{figure}[ht]
-	\centering
-	\includegraphics[scale=.37]{./Figures/questionMark.png}
-	\caption{¿Por qué de pronto aparece esta figura?}
-	\label{fig:questionMark}
-\end{figure}
+Basándose en la información de la tabla de enrutamiento, cada nodo toma decisiones sobre la ruta óptima para enviar los paquetes. Al momento de tomar estas decisiones se pueden considerar una sería de  métricas, como la latencia, el ancho de banda o el costo de los enlaces.
 
-Nunca colocar una figura en el documento antes de hacer la primera referencia a ella, como se ilustra con la figura \ref{fig:questionMark}, porque sino el lector no comprenderá por qué de pronto aparece la figura en el documento, lo que distraerá su atención.
+\subsection{Actualización de la información de enrutamiento}
 
-Otra posibilidad es utilizar el entorno \textit{subfigure} para incluir más de una figura, como se puede ver en la figura \ref{fig:three graphs}. Notar que se pueden referenciar también las figuras internas individualmente de esta manera: \ref{fig:1de3}, \ref{fig:2de3} y \ref{fig:3de3}.
- 
-\begin{figure}[!htpb]
-     \centering
-     \begin{subfigure}[b]{0.3\textwidth}
-         \centering
-         \includegraphics[width=.65\textwidth]{./Figures/questionMark}
-         \caption{Un caption.}
-         \label{fig:1de3}
-     \end{subfigure}
-     \hfill
-     \begin{subfigure}[b]{0.3\textwidth}
-         \centering
-         \includegraphics[width=.65\textwidth]{./Figures/questionMark}
-         \caption{Otro.}
-         \label{fig:2de3}
-     \end{subfigure}
-     \hfill
-     \begin{subfigure}[b]{0.3\textwidth}
-         \centering
-         \includegraphics[width=.65\textwidth]{./Figures/questionMark}
-         \caption{Y otro más.}
-         \label{fig:3de3}
-     \end{subfigure}
-        \caption{Tres gráficos simples}
-        \label{fig:three graphs}
-\end{figure}
+Los protocolos de enrutamiento utilizan diferentes mecanismos para mantener la información de enrutamiento actualizada. Esto puede incluir la difusión periódica de actualizaciones de enrutamiento, el intercambio de mensajes de estado entre nodos adyacentes o la detección de cambios en la topología de la red.
 
-El código para generar las imágenes se encuentra disponible para su reutilización en el archivo \file{Chapter2.tex}.
+\subsection{Resolución de problemas y enrutamiento alternativo}
 
-\subsection{Tablas}
+Los protocolos de enrutamiento deben manejar situaciones en las que se producen fallas o congestión en los enlaces de la red. Esto implica detectar y resolver problemas de enrutamiento, así como encontrar rutas alternativas cuando una ruta principal no está disponible.
 
-Para las tablas utilizar el mismo formato que para las figuras, sólo que el epígrafe se debe colocar arriba de la tabla, como se ilustra en la tabla \ref{tab:peces}. Observar que sólo algunas filas van con líneas visibles y notar el uso de las negritas para los encabezados.  La referencia se logra utilizando el comando \verb|\ref{<label>}| donde label debe estar definida dentro del entorno de la tabla.
+\section{Enrutamiento de vector distancia}
 
-\begin{verbatim}
-\begin{table}[h]
-	\centering
-	\caption[caption corto]{caption largo más descriptivo}
-	\begin{tabular}{l c c}    
-		\toprule
-		\textbf{Especie}     & \textbf{Tamaño} & \textbf{Valor}\\
-		\midrule
-		Amphiprion Ocellaris & 10 cm           & \$ 6.000 \\		
-		Hepatus Blue Tang    & 15 cm           & \$ 7.000 \\
-		Zebrasoma Xanthurus  & 12 cm           & \$ 6.800 \\
-		\bottomrule
-		\hline
-	\end{tabular}
-	\label{tab:peces}
-\end{table}
-\end{verbatim}
+Cada router mantiene una tabla  que contiene información sobre las rutas disponibles y las distancias asociadas a cada destino. La distancia generalmente se mide en términos de saltos o en otras métricas como el costo, el retardo o el ancho de banda.\citep{rip}
+
+\section{Requisitos de la implementación}
+
+Como se ha mencionado anteriormente el proyecto surgió a partir de la necesidad de poder desplegar redes más robustas haciendo uso del módulo "HRD-Radio LoRa". Para esto se buscó desarrollar un protocolo que pudiese ser ejecutado sobre estos dispositivos y pudiera dotar a las redes de una serie de características que se describen en los siguientes párrafos.
+
+Se deberá contemplar la existencia de tres tipos de elementos. Los servidores externos, los nodos finales y los nodos ruteadores.
+
+Los servidores externos representan dispositivos que existen fuera de la red generada con los "HRD-Radio-LoRa". Su función es la de intercambiar datos con los nodos finales.
+
+Los nodos finales son dispositivos que existen dentro de la red generada con los "HRD-Radio-LoRa". Son los encargados de generar los datos destinados a los servidores externos y también cuentan con la capacidad para recibir datos que estos envíen hacia ellos. La mayor parte del tiempo se mantienen en estado de bajo consumo, lo que implica que quedan fuera de la red. Sólo acceden a la red cuando necesitan enviar datos hacia los servidores externos. Una vez que envían esos datos, permanecen durante un tiempo esperando por datos que pudieran llegar de los servidores externos al cabo del cuál vuelven a pasar a estado de bajo consumo.
+
+Los nodos ruteadores son dispositivos que existen dentro de la red generada con los "HRD-Radio-LoRa". Su función es la de trasladar los datos intercambiados entre los nodos finales y los servidores externos. Para esto intercambian con sus pares mensajes con información de ruteo de manera de lograr mantener la información de las rutas a cada destino actualizadas.
 
 
-\begin{table}[h]
-	\centering
-	\caption[caption corto]{caption largo más descriptivo}
-	\begin{tabular}{l c c}    
-		\toprule
-		\textbf{Especie} 	 & \textbf{Tamaño} 		& \textbf{Valor}  \\
-		\midrule
-		Amphiprion Ocellaris & 10 cm 				& \$ 6.000 \\		
-		Hepatus Blue Tang	 & 15 cm				& \$ 7.000 \\
-		Zebrasoma Xanthurus	 & 12 cm				& \$ 6.800 \\
-		\bottomrule
-		\hline
-	\end{tabular}
-	\label{tab:peces}
-\end{table}
 
-En cada capítulo se debe reiniciar el número de conteo de las figuras y las tablas, por ejemplo, figura 2.1 o tabla 2.1, pero no se debe reiniciar el conteo en cada sección. Por suerte la plantilla se encarga de esto por nosotros.
-
-\subsection{Ecuaciones}
-\label{sec:Ecuaciones}
-
-Al insertar ecuaciones en la memoria dentro de un entorno \textit{equation}, éstas se numeran en forma automática  y se pueden referir al igual que como se hace con las figuras y tablas, por ejemplo ver la ecuación \ref{eq:metric}.
-
-\begin{equation}
-	\label{eq:metric}
-	ds^2 = c^2 dt^2 \left( \frac{d\sigma^2}{1-k\sigma^2} + \sigma^2\left[ d\theta^2 + \sin^2\theta d\phi^2 \right] \right)
-\end{equation}
-                                                        
-Es importante tener presente que si bien las ecuaciones pueden ser referidas por su número, también es correcto utilizar los dos puntos, como por ejemplo ``la expresión matemática que describe este comportamiento es la siguiente:''
-
-\begin{equation}
-	\label{eq:schrodinger}
-	\frac{\hbar^2}{2m}\nabla^2\Psi + V(\mathbf{r})\Psi = -i\hbar \frac{\partial\Psi}{\partial t}
-\end{equation}
-
-Para generar la ecuación \ref{eq:metric} se utilizó el siguiente código:
-
-\begin{verbatim}
-\begin{equation}
-	\label{eq:metric}
-	ds^2 = c^2 dt^2 \left( \frac{d\sigma^2}{1-k\sigma^2} + 
-	\sigma^2\left[ d\theta^2 + 
-	\sin^2\theta d\phi^2 \right] \right)
-\end{equation}
-\end{verbatim}
-
-Y para la ecuación \ref{eq:schrodinger}:
-
-\begin{verbatim}
-\begin{equation}
-	\label{eq:schrodinger}
-	\frac{\hbar^2}{2m}\nabla^2\Psi + V(\mathbf{r})\Psi = 
-	-i\hbar \frac{\partial\Psi}{\partial t}
-\end{equation}
-
-\end{verbatim}
